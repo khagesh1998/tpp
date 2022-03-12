@@ -9,17 +9,16 @@ export const MatchCard = () => {
       <View style={styles.hContainer}>
         <Text style={styles.hTitle}>Bundasliga</Text>
         <Image
-          source={require('../assets/icon-add-notification copy.png')}
+          source={require('../assets/icon-add-notification.png')}
           style={styles.hLineUpsIcon}
         />
         <Text style={styles.hLineUps}>Lineups Out</Text>
         <Image
-          source={require('../assets/icon-add-notification copy.png')}
+          source={require('../assets/icon-add-notification.png')}
           style={styles.hIcon}
         />
+        <View style={styles.divider} />
       </View>
-      {/* ------------------------------------ divider ------------------------------------*/}
-      <View style={styles.divider} />
       {/* ------------------------------------ Title ------------------------------------*/}
       <View style={styles.tContainer}>
         <Text style={styles.tText}>Dortmund</Text>
@@ -63,11 +62,11 @@ export const MatchCard = () => {
         </View>
         <View style={styles.fRight}>
           <Image
-            source={require('../assets/icon-add-notification copy.png')}
+            source={require('../assets/icon-add-notification.png')}
             style={styles.fLineUpsIcon}
           />
           <Image
-            source={require('../assets/icon-add-notification copy.png')}
+            source={require('../assets/icon-add-notification.png')}
             style={styles.fLineUpsIcon}
           />
         </View>

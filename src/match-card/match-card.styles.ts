@@ -15,6 +15,7 @@ const BORDER_RADIUS = 8;
 
 export const styles = StyleSheet.create({
   container: {
+    height: 128,
     width: '100%',
     backgroundColor: colors.BACKGROUND,
     borderRadius: BORDER_RADIUS,
@@ -22,6 +23,7 @@ export const styles = StyleSheet.create({
   },
   /** ------------------------------------ header ------------------------------------ */
   hContainer: {
+    height: 32,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'flex-end',
@@ -39,7 +41,6 @@ export const styles = StyleSheet.create({
   hIcon: {
     height: 20,
     width: 20,
-    backgroundColor: colors.SECONDARY,
   },
   hLineUps: {
     fontSize: 12,
@@ -52,14 +53,14 @@ export const styles = StyleSheet.create({
     marginRight: 4,
     height: 16,
     width: 16,
-    backgroundColor: colors.SECONDARY,
   },
-  /** ------------------------------------ divider ------------------------------------ */
   divider: {
-    backgroundColor: colors.DIVIDER,
+    position: 'absolute',
     height: 1,
-    borderRadius: 1 / 2,
-    marginHorizontal: 12,
+    left: 12,
+    right: 12,
+    bottom: 0,
+    backgroundColor: colors.DIVIDER,
   },
   /** ------------------------------------ Title ------------------------------------ */
   tContainer: {
@@ -67,6 +68,8 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 16,
   },
   tText: {
     fontSize: 12,
@@ -76,6 +79,7 @@ export const styles = StyleSheet.create({
   },
   /** ------------------------------------ Main ------------------------------------ */
   mContainer: {
+    height: 34,
     paddingHorizontal: 9,
     flexDirection: 'row',
     alignItems: 'center',
@@ -84,6 +88,7 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   mLeft: {
+    height: 34,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -94,6 +99,7 @@ export const styles = StyleSheet.create({
     color: colors.RED,
   },
   mRight: {
+    height: 34,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -128,6 +134,7 @@ export const styles = StyleSheet.create({
   },
   /** ------------------------------------ Footer ------------------------------------ */
   fContainer: {
+    height: 32,
     paddingHorizontal: 12,
     flexDirection: 'row',
     alignItems: 'center',
@@ -168,6 +175,5 @@ export const styles = StyleSheet.create({
     width: 16,
     height: 16,
     marginLeft: 16,
-    backgroundColor: colors.SECONDARY,
   },
 });
