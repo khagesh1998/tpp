@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Image, Text, View} from 'react-native';
 import {styles} from './match-card.styles';
 
-export const MatchCard = () => {
+export const MatchCard = memo(() => {
   return (
     <View style={styles.container}>
       {/* ------------------------------------ header ------------------------------------ */}
@@ -73,4 +73,4 @@ export const MatchCard = () => {
       </View>
     </View>
   );
-};
+});
