@@ -9,13 +9,14 @@
  */
 
 import React from 'react';
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, View} from 'react-native';
+import {MatchCard} from './match-card/match-card';
 
 export const Home = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text>Hello world!</Text>
+      <View style={{marginTop: 100, padding: 16}}>
+        <MatchCard />
       </View>
     </SafeAreaView>
   );
