@@ -49,9 +49,39 @@ const MatchListFlatList = memo(() => {
     );
   }, [startTime]);
 
-  const data = useMemo(() => [...Array(50).keys()], []);
+  const [data, setData] = useState([...Array(10).keys()]);
+  const [isNextLoading, setIsNextLoading] = useState(false);
 
   const renderITem = useCallback(() => <MatchCard />, []);
+
+  const onEndReached = useCallback(() => {
+    if (data.length < 50) {
+      setIsNextLoading(true);
+      setTimeout(() => {
+        setData(localData => {
+          const length = localData.length;
+          const extendedList = new Array(10).fill(0);
+          for (let i = 0; i < 10; i++) {
+            extendedList[i] = length + i;
+          }
+          return [...localData, ...extendedList];
+        });
+        setIsNextLoading(false);
+      }, 10);
+    }
+  }, [data]);
+
+  const ListFooterComponent = useMemo(() => {
+    if (!isNextLoading) {
+      return null;
+    }
+    return (
+      <View
+        style={{height: 40, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator color="#797979" size="small" />
+      </View>
+    );
+  }, [isNextLoading]);
 
   return (
     <SafeAreaView>
@@ -63,6 +93,9 @@ const MatchListFlatList = memo(() => {
         ItemSeparatorComponent={ItemSeparatorComponent}
         getItemLayout={getItemLayout}
         maxToRenderPerBatch={50}
+        onEndReached={onEndReached}
+        ListFooterComponent={ListFooterComponent}
+        disableVirtualization
       />
     </SafeAreaView>
   );
@@ -77,7 +110,7 @@ const MatchListScrollView = memo(() => {
     );
   }, [startTime]);
 
-  const data = useMemo(() => [...Array(50).keys()], []);
+  const data = useMemo(() => [...Array(10).keys()], []);
 
   const renderITem = useCallback((item, index) => {
     return (
