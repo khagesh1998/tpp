@@ -8,33 +8,40 @@
  * @format
  */
 
-import React, {useMemo} from 'react';
+import React, {useCallback, useMemo} from 'react';
 import {FlatList, SafeAreaView, View} from 'react-native';
 import {MatchCard} from './match-card/match-card';
+import {styles} from './home.styles';
 
-const ItemSeparatorComponent = () => <View style={{height: 12}} />;
+const ItemSeparatorComponent = () => (
+  <View style={styles.itemSeparatorComponent} />
+);
 
 const ITEM_HEIGHT = 128;
 const ITEM_SEPARATOR_HEIGHT = 12;
 
+const keyExtractor = (data: number) => data.toString();
+const getItemLayout = (_: unknown, index: number) => ({
+  length: ITEM_HEIGHT,
+  offset: (ITEM_HEIGHT + ITEM_SEPARATOR_HEIGHT) * index,
+  index,
+});
+
 export const Home = () => {
-  const data = useMemo(() => new Array(1000).fill(0), []);
+  const data = useMemo(() => [...Array(1000).keys()], []);
+
+  const renderITem = useCallback(() => <MatchCard />, []);
 
   return (
     <SafeAreaView>
       <FlatList
-        contentContainerStyle={{
-          paddingHorizontal: 16,
-          paddingVertical: 36,
-        }}
+        contentContainerStyle={styles.contentContainerStyle}
+        keyExtractor={keyExtractor}
         data={data}
-        renderItem={MatchCard}
+        renderItem={renderITem}
         ItemSeparatorComponent={ItemSeparatorComponent}
-        getItemLayout={(_, index) => ({
-          length: ITEM_HEIGHT,
-          offset: (ITEM_HEIGHT + ITEM_SEPARATOR_HEIGHT) * index,
-          index,
-        })}
+        getItemLayout={getItemLayout}
+        maxToRenderPerBatch={50}
       />
     </SafeAreaView>
   );
