@@ -8,8 +8,21 @@
  * @format
  */
 
-import React, {useCallback, useMemo} from 'react';
-import {FlatList, SafeAreaView, View} from 'react-native';
+import React, {
+  Fragment,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import {
+  ActivityIndicator,
+  FlatList,
+  SafeAreaView,
+  ScrollView,
+  View,
+} from 'react-native';
 import {MatchCard} from './match-card/match-card';
 import {styles} from './home.styles';
 
@@ -27,8 +40,16 @@ const getItemLayout = (_: unknown, index: number) => ({
   index,
 });
 
-export const Home = () => {
-  const data = useMemo(() => [...Array(1000).keys()], []);
+const MatchListFlatList = memo(() => {
+  const startTime = new Date().getTime();
+  useEffect(() => {
+    console.log(
+      'time taken by flatlist to load 50 items',
+      new Date().getTime() - startTime,
+    );
+  }, [startTime]);
+
+  const data = useMemo(() => [...Array(50).keys()], []);
 
   const renderITem = useCallback(() => <MatchCard />, []);
 
@@ -45,4 +66,52 @@ export const Home = () => {
       />
     </SafeAreaView>
   );
+});
+
+const MatchListScrollView = memo(() => {
+  const startTime = new Date().getTime();
+  useEffect(() => {
+    console.log(
+      'time taken by scrollview to load 50 items',
+      new Date().getTime() - startTime,
+    );
+  }, [startTime]);
+
+  const data = useMemo(() => [...Array(50).keys()], []);
+
+  const renderITem = useCallback((item, index) => {
+    return (
+      <Fragment key={item}>
+        {index !== 0 && <ItemSeparatorComponent />}
+        <MatchCard />
+      </Fragment>
+    );
+  }, []);
+
+  return (
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={styles.contentContainerStyle}>
+        {data.map(renderITem)}
+      </ScrollView>
+    </SafeAreaView>
+  );
+});
+
+export const Home = () => {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 10);
+  }, [setIsLoading]);
+
+  if (isLoading) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" color="#797979" />
+      </View>
+    );
+  }
+
+  return <MatchListFlatList />;
 };
