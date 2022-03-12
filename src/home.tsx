@@ -11,7 +11,7 @@
 import React from 'react';
 import {SafeAreaView, Text, View} from 'react-native';
 
-const App = () => {
+export const Home = () => {
   return (
     <SafeAreaView>
       <View>
@@ -20,5 +20,3 @@ const App = () => {
     </SafeAreaView>
   );
 };
-
-export default App;
