@@ -9,11 +9,13 @@ const colors = {
   TERNARY: '#109E38',
 };
 
+const BORDER_RADIUS = 8;
+
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
     backgroundColor: colors.BACKGROUND,
-    borderRadius: 8,
+    borderRadius: BORDER_RADIUS,
     elevation: 5,
   },
   /** ------------------------------------ header ------------------------------------ */
@@ -63,6 +65,9 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: colors.DIVIDER,
+    borderBottomLeftRadius: BORDER_RADIUS,
+    borderBottomRightRadius: BORDER_RADIUS,
   },
   fLeft: {
     flexDirection: 'row',
